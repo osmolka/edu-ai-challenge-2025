@@ -1,0 +1,7 @@
+I'm a QA and found such a bug: “Logout button doesn’t work on Safari. It just doesn’t respond.” Create a ticket for Jira with the following output:
+Title
+Description
+Steps to Reproduce
+Expected vs Actual Behavior
+Environment (if known)
+Severity or Impact
