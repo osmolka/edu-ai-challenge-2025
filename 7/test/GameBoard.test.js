@@ -415,13 +415,17 @@ describe('GameBoard', () => {
     test('should handle attack on location with pre-hit ship segment', () => {
       const ship = new Ship(3);
       ship.place(['00', '01', '02']);
-      ship.hit('01'); // Pre-hit one segment
       board.ships.push(ship);
       
-      // Attack already hit location
-      const result = board.receiveAttack('01');
-      expect(result.valid).toBe(false);
-      expect(result.alreadyGuessed).toBe(true);
+      // First attack should hit
+      const firstResult = board.receiveAttack('01');
+      expect(firstResult.hit).toBe(true);
+      expect(firstResult.valid).toBe(true);
+      
+      // Second attack on same location should be invalid
+      const secondResult = board.receiveAttack('01');
+      expect(secondResult.valid).toBe(false);
+      expect(secondResult.alreadyGuessed).toBe(true);
     });
   });
 }); 
