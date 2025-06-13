@@ -1,0 +1,57 @@
+{
+  "name": "modern-battleship",
+  "version": "1.0.0",
+  "description": "A modernized Battleship game using ES6+ features and modular architecture",
+  "type": "module",
+  "main": "seabattle.js",
+  "scripts": {
+    "start": "node seabattle.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "test:verbose": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose"
+  },
+  "keywords": [
+    "battleship",
+    "sea-battle",
+    "game",
+    "es6",
+    "javascript",
+    "console-game",
+    "terminal-game"
+  ],
+  "author": "AI Assistant",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 60,
+        "lines": 60,
+        "statements": 60
+      }
+    },
+    "transform": {},
+    "injectGlobals": true
+  }
+} 
