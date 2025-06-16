@@ -1,0 +1,34 @@
+{
+  "name": "digital-service-analyzer",
+  "version": "1.0.0",
+  "description": "A Node.js console application that analyzes digital services and generates comprehensive markdown reports using OpenAI API",
+  "main": "service-analyzer.js",
+  "bin": {
+    "service-analyzer": "./service-analyzer.js"
+  },
+  "scripts": {
+    "start": "node service-analyzer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "digital-services",
+    "analysis",
+    "markdown",
+    "openai",
+    "console",
+    "cli"
+  ],
+  "author": "Digital Service Analyzer",
+  "license": "MIT",
+  "dependencies": {
+    "openai": "^4.67.1",
+    "commander": "^12.1.0",
+    "inquirer": "^8.2.6",
+    "chalk": "^4.1.2",
+    "dotenv": "^16.4.5",
+    "fs-extra": "^11.2.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 
