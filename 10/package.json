@@ -1,0 +1,19 @@
+{
+  "name": "product-search-tool",
+  "version": "1.0.0",
+  "description": "Console-based product search tool using OpenAI function calling",
+  "main": "search.js",
+  "type": "module",
+  "scripts": {
+    "start": "node search.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "openai": "^4.20.1",
+    "dotenv": "^16.3.1",
+    "readline": "^1.3.0"
+  },
+  "keywords": ["openai", "product-search", "function-calling"],
+  "author": "",
+  "license": "MIT"
+} 
