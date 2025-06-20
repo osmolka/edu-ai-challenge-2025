@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "source_file": "CAR0004.mp3",
+    "processed_at": "2025-06-20T11:38:46.041Z",
+    "duration": 448.2900085449219,
+    "fileSize": "2.27",
+    "wordCount": 949
+  },
+  "analytics": {
+    "word_count": 949,
+    "speaking_speed_wpm": 127,
+    "frequently_mentioned_topics": [
+      {
+        "topic": "Chest Pain",
+        "mentions": 12
+      },
+      {
+        "topic": "Heart Attack",
+        "mentions": 6
+      },
+      {
+        "topic": "Pain Description",
+        "mentions": 5
+      },
+      {
+        "topic": "Symptom History",
+        "mentions": 5
+      },
+      {
+        "topic": "Medical Tests",
+        "mentions": 3
+      },
+      {
+        "topic": "Family History",
+        "mentions": 3
+      },
+      {
+        "topic": "Medication Use",
+        "mentions": 3
+      },
+      {
+        "topic": "Lifestyle Factors",
+        "mentions": 3
+      },
+      {
+        "topic": "Patient Background",
+        "mentions": 3
+      },
+      {
+        "topic": "Past Illness",
+        "mentions": 2
+      }
+    ]
+  }
+}
