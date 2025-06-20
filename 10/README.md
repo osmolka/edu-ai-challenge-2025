@@ -38,10 +38,11 @@ Then enter your search queries in natural language:
 
 - `"gaming laptop under $1500 with 4.5+ rating"`
 - `"fitness equipment in stock under $100"`
-- `"electronics with rating above 4.6"`
+- `"show me the lowest rated product"`
 - `"kitchen appliances between $50 and $200"`
-- `"books with high rating"`
-- `"cheap clothing under $30"`
+- `"show me 3 cheapest electronics"`
+- `"electronics sorted by price low to high"`
+- `"fitness equipment with rating below 4.2"`
 
 ### Commands
 
@@ -62,8 +63,10 @@ The tool can extract and apply these filters:
 
 - **Category**: Electronics, Fitness, Kitchen, Books, Clothing
 - **Price Range**: Minimum and maximum price limits
-- **Rating**: Minimum rating requirement (0-5 scale)
+- **Rating Range**: Minimum and maximum rating requirements (0-5 scale)
 - **Stock Status**: Whether to show only in-stock items
+- **Sorting**: Sort by price (low to high, high to low), rating (low to high, high to low), or name
+- **Limit**: Maximum number of results to return (useful for "show me the top 3" queries)
 
 ## Error Handling
 

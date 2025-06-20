@@ -25,7 +25,7 @@ try {
 // Function definition for OpenAI function calling
 const filterProductsFunction = {
   name: 'filter_products',
-  description: 'Filter products based on user preferences including category, price range, rating, and availability',
+  description: 'Filter and sort products based on user preferences including category, price range, rating, availability, and sorting options',
   parameters: {
     type: 'object',
     properties: {
@@ -46,9 +46,22 @@ const filterProductsFunction = {
         type: 'number',
         description: 'Minimum rating requirement (0-5 scale)'
       },
+      max_rating: {
+        type: 'number',
+        description: 'Maximum rating limit (0-5 scale) - useful for finding lower-rated products'
+      },
       in_stock: {
         type: 'boolean',
         description: 'Whether to filter for products that are in stock'
+      },
+      sort_by: {
+        type: 'string',
+        description: 'Sort products by specific criteria',
+        enum: ['price_low_to_high', 'price_high_to_low', 'rating_low_to_high', 'rating_high_to_low', 'name']
+      },
+      limit: {
+        type: 'number',
+        description: 'Maximum number of products to return (useful for "show me the lowest/highest" queries)'
       }
     },
     required: []
@@ -57,7 +70,8 @@ const filterProductsFunction = {
 
 // Function to apply filters to products using OpenAI's extracted parameters
 function applyFilters(products, filters) {
-  return products.filter(product => {
+  // First, apply all filters
+  let filteredProducts = products.filter(product => {
     // Category filter
     if (filters.category && product.category !== filters.category) {
       return false;
@@ -72,8 +86,12 @@ function applyFilters(products, filters) {
       return false;
     }
     
-    // Rating filter
+    // Rating filters
     if (filters.min_rating !== undefined && product.rating < filters.min_rating) {
+      return false;
+    }
+    
+    if (filters.max_rating !== undefined && product.rating > filters.max_rating) {
       return false;
     }
     
@@ -84,6 +102,34 @@ function applyFilters(products, filters) {
     
     return true;
   });
+  
+  // Apply sorting if specified
+  if (filters.sort_by) {
+    switch (filters.sort_by) {
+      case 'price_low_to_high':
+        filteredProducts.sort((a, b) => a.price - b.price);
+        break;
+      case 'price_high_to_low':
+        filteredProducts.sort((a, b) => b.price - a.price);
+        break;
+      case 'rating_low_to_high':
+        filteredProducts.sort((a, b) => a.rating - b.rating);
+        break;
+      case 'rating_high_to_low':
+        filteredProducts.sort((a, b) => b.rating - a.rating);
+        break;
+      case 'name':
+        filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+    }
+  }
+  
+  // Apply limit if specified
+  if (filters.limit && filters.limit > 0) {
+    filteredProducts = filteredProducts.slice(0, filters.limit);
+  }
+  
+  return filteredProducts;
 }
 
 // Function to format and display products
@@ -164,8 +210,9 @@ function showWelcome() {
   console.log('\nExample queries:');
   console.log('• "gaming laptop under $1500 with 4.5+ rating"');
   console.log('• "fitness equipment in stock under $100"');
-  console.log('• "electronics with rating above 4.6"');
+  console.log('• "show me the lowest rated product"');
   console.log('• "kitchen appliances between $50 and $200"');
+  console.log('• "3 cheapest electronics sorted by price"');
   console.log('\nAvailable categories: Electronics, Fitness, Kitchen, Books, Clothing');
   console.log('\nType "exit" to quit, "help" for examples\n');
 }
@@ -180,7 +227,11 @@ function showHelp() {
   console.log('• "Clothing items between $20 and $50"');
   console.log('• "Gaming laptop under $1500 with high rating"');
   console.log('• "Cheap fitness equipment under $30"');
-  console.log('• "Premium electronics with 4.7+ rating"');
+  console.log('• "Show me the lowest rated product"');
+  console.log('• "Find the most expensive electronics"');
+  console.log('• "Show me 3 cheapest books"');
+  console.log('• "Electronics sorted by price low to high"');
+  console.log('• "Fitness equipment with rating below 4.2"');
 }
 
 // Main interactive loop

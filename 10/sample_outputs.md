@@ -107,10 +107,49 @@ Found 4 matching product(s).
 
 ---
 
+## Sample Run 6: Lowest Rated Product
+
+**User Query:** `"show me the lowest rated product"`
+
+```
+🔍 Enter your search query: show me the lowest rated product
+
+Processing query: "show me the lowest rated product"
+Extracted filters: { sort_by: 'rating_low_to_high', limit: 1 }
+
+Filtered Products:
+1. Jump Rope - $9.99, Rating: 4.0, In Stock
+
+Found 1 matching product(s).
+```
+
+---
+
+## Sample Run 7: Sorted Results with Limit
+
+**User Query:** `"show me 3 cheapest electronics"`
+
+```
+🔍 Enter your search query: show me 3 cheapest electronics
+
+Processing query: "show me 3 cheapest electronics"
+Extracted filters: { category: 'Electronics', sort_by: 'price_low_to_high', limit: 3 }
+
+Filtered Products:
+1. Portable Charger - $29.99, Rating: 4.2, In Stock
+2. Bluetooth Speaker - $49.99, Rating: 4.4, In Stock
+3. Gaming Mouse - $59.99, Rating: 4.3, In Stock
+
+Found 3 matching product(s).
+```
+
+---
+
 ## Notes
 
 - The application uses OpenAI's GPT-4.1-mini with function calling to extract structured filters from natural language queries
-- Filters can include: category, price range (min/max), rating threshold, and stock availability
+- Filters can include: category, price range (min/max), rating thresholds (min/max), stock availability, sorting, and result limits
+- Sorting options: price (low to high, high to low), rating (low to high, high to low), and alphabetical by name
 - The output format shows: product name, price, rating, and stock status
 - When no products match the criteria, a clear "No products found" message is displayed
 - The extracted filters are shown for transparency, demonstrating how the AI interprets the natural language query 
